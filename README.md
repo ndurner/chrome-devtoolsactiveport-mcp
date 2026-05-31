@@ -65,15 +65,13 @@ Or, after `pip install -e .`:
 
 `PYTHONIOENCODING=utf-8` is recommended on Windows so the broker subprocess and any downstream Python tooling do not crash with `UnicodeEncodeError` on `cp1252` consoles.
 
-## Typical usage
+## Typical Usage
+Enable Remote Debugging in Chrome by entering the following in the address bar:
+> chrome://inspect/#remote-debugging
 
-1. Launch Chrome with remote debugging enabled (e.g. `chrome.exe --remote-debugging-port=0 --user-data-dir="C:\path\to\chrome-profile"`).
-2. From the MCP client, call `find_devtools_active_port` and pick the profile with the most recent `mtime`.
-3. Call `start_broker` with that `profile_dir`. Approve the Chrome confirmation dialog once.
-4. Read `local_ws_url` from `broker_status` and point any CDP tooling at it. Chrome will not prompt again as long as the broker stays alive.
-5. Call `stop_broker` when the work is done.
+Check the checkbox there.
 
-If the environment does not prompt for approval, you can skip the broker and call `resolve_devtools_active_port` to get a direct `ws://127.0.0.1:<port><path>` URL.
+When the agent attempts to access the browser, a security popup will appear in Chrome. Watch out for this and be quick to confirm it.
 
 ## Layout
 
